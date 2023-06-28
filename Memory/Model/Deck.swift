@@ -37,6 +37,18 @@ struct Deck {
     }
     return Deck(cards: list)
   }
+  
+  func fisherYatesShuffle() -> Deck {
+    var list = cards
+    for i in 0..<list.count {
+      let randomIndex = Int.random(in: i..<list.count)
+      if i != randomIndex {
+        list.swapAt(i, randomIndex)
+      }
+    }
+    return Deck(cards: list)
+  }
+
 
 }
 
