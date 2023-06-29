@@ -32,7 +32,6 @@ struct GameView: View {
             .onTapGesture {
               withAnimation {
                 flip(card)
-                //card.selected.toggle()
               }
             }
             .rotation3DEffect(.degrees(card.selected ? 180 : 0), axis: (x: 0, y: 1, z: 0))
