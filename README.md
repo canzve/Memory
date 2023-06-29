@@ -1,3 +1,3 @@
 # Memory Geme
 
-The goal is to convert from MemoryUIKit to SwiftUI
+The goal is to convert MemoryUIKit project to SwiftUI
