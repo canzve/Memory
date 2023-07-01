@@ -25,9 +25,7 @@ struct GameView: View {
     ZStack {
       Color("greenSea").ignoresSafeArea()
       LazyHGrid(rows: rows, spacing: 5) {
-        
-        ForEach(0..<vm.cards.count, id: \.self) { idx in
-          let card = vm.cards[idx]
+        ForEach(vm.cards, id: \.id) { card in
           CardView(card: card)
             .onTapGesture {
               withAnimation {
