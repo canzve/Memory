@@ -14,28 +14,25 @@ class MemoryGame: ObservableObject {
   
   init(difficulty: Difficulty) {
     self.difficulty = difficulty
-    let crds = createDeck(numCards: difficulty.rawValue/2)
-    cards.append(contentsOf: crds)
+    cards = createDeck(difficulty.rawValue)
   }
   
-  func fullDeck() -> [Card] {
+    func createDeck(_ num: Int) -> [Card] {
     var cards = [Card]()
-    for rank in Rank.allCases {
-      for suit in Suit.allCases {
-        let card = Card(rank: rank, suit: suit)
-        cards.append(card)
+    
+    while cards.count < num {
+      let rank = Rank.allCases.randomElement()!
+      let suit = Suit.allCases.randomElement()!
+      
+      let card1 = Card(rank: rank, suit: suit, id: cards.count)
+      let card2 = Card(rank: rank, suit: suit, id: cards.count + 1)
+      
+      if !cards.containsPair(card1) && !cards.containsPair(card2) {
+        cards.append(card1)
+        cards.append(card2)
       }
     }
-    return cards
-  }
-  
-  func createDeck(numCards: Int) -> [Card] {
-    let halfDeck = deckOfNumberOfCards(numCards)
-    return (halfDeck + halfDeck).shuffled()
-  }
-  
-  func deckOfNumberOfCards(_ num: Int) -> [Card] {
-    Array(fullDeck()[0..<num])
+    return cards.FYShuffled()
   }
 
 }
